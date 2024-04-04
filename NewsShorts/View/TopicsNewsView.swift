@@ -6,17 +6,38 @@
 //
 
 import SwiftUI
+import VisionaryUI
 
-enum Countries: String {
-    case india = "in"
-    case russia = "ru"
-    case usa = "us"
-    case england = "eg"
+enum TopicsNews: String, CaseIterable {
+    case business
+    case entertainment
+    case general
+    case health
+    case science
+    case sports
+    case technology
 }
 
 struct TopicsNewsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+            VStack(alignment: .leading, spacing: 5) {
+                
+                Text("Topics")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .bold()
+                    .font(.system(size: 20))
+                    .foregroundStyle(.black)
+                
+                Rectangle()
+                    .fill(.black)
+                    .frame(width: 35 , height: 1)
+            }
+            .padding(.bottom, 10)
+            
+            
+        }
     }
 }
 

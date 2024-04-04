@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+extension String {
+    func trimStringTo(words: Int) -> String {
+        let totalWords = self.components(separatedBy: " ")
+        let trimmedWords = Array(totalWords.prefix(words))
+        return trimmedWords.joined(separator: " ") + "."
+    }
+}

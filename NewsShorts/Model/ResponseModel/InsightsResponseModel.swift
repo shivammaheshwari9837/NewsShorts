@@ -18,6 +18,12 @@ struct InsightsResponseModel: Codable {
     
 }
 
-struct InsightsDetailResponseModel: Codable {
+struct InsightsDetailResponseModel: Codable, Identifiable {
+    var id: String {
+        return UUID().uuidString
+    }
     public let urlToImage: String?
+    public let description: String?
+    public let title: String?
+    public let url: String?
 }

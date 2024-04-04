@@ -17,10 +17,12 @@ struct NewsListResponseModel: Codable {
     }
 }
 
-struct NewsDetailResponseModel: Codable, Identifiable {
+struct NewsDetailResponseModel: Codable, Identifiable, Hashable {
     var id: String {
         return UUID().uuidString
     }
     public let description: String?
     public let urlToImage: String?
+    public let title: String?
+    public let url: String?
 }

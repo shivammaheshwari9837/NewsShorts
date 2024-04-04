@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum NetworkError: Error {
+    case urlParsingError
+    case responseParsingError
+    case requestBodyParsingError
+}

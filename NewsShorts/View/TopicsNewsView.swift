@@ -36,10 +36,20 @@ struct TopicsNewsView: View {
             }
             .padding(.bottom, 10)
             
-            
+//            CustomTopTabBarView(tabBarButtonModels: <#T##[TabBarButtonModel<AnyView>]#>, defaultTabIndex: 0)
         }
     }
+
+//    func createTopicsTabBarViews() -> [TabBarButtonModel] {
+//        
+//    }
 }
+
+//struct TopicsSectionNews: View {
+//    var body: some View {
+//        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Hello, world!@*/Text("Hello, world!")/*@END_MENU_TOKEN@*/
+//    }
+//}
 
 #Preview {
     TopicsNewsView()

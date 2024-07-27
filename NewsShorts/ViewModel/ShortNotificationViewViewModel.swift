@@ -7,6 +7,11 @@
 
 import Foundation
 
+protocol ValidFilterDataProtocol {
+    associatedtype CodableType: Codable
+    func filterValidNews(newsData: [CodableType]) -> [CodableType]
+}
+
 class ShortNotificationViewViewModel: ObservableObject {
     @Published var shortNewsList: [NewsDetailResponseModel] = []
     private let apiClient: APIClient
@@ -31,8 +36,17 @@ extension ShortNotificationViewViewModel {
                 return
             }
             DispatchQueue.main.async {
-                self.shortNewsList = Array(newsList.prefix(3))
+                self.shortNewsList = Array(self.filterValidNews(newsData: newsList).prefix(3))
             }
+        }
+    }
+}
+
+/// Created due to free API limitations
+extension ShortNotificationViewViewModel: ValidFilterDataProtocol {
+    func filterValidNews(newsData: [NewsDetailResponseModel]) -> [NewsDetailResponseModel] {
+        newsData.filter { model in
+            model.description != nil && model.urlToImage != nil && model.title != nil && model.url != nil
         }
     }
 }

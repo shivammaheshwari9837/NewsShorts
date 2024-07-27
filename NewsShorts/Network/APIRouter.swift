@@ -10,17 +10,20 @@ import Foundation
 enum APIRouter: APIRequestable {
     case newsListTopHeadlines(newsListRequestBody: NewsListTopHeadlinesRequestBody)
     case insightsList(insightsRequestBody: NewsListTopHeadlinesRequestBody)
+    case topicsNewsList(topicsNewsRequestBody: TopicsNewsRequestBody)
     
     var urlString: String {
         switch self {
         case .newsListTopHeadlines, .insightsList:
             return APIUrlConstants.topHeadlinesNews
+        case .topicsNewsList:
+            return APIUrlConstants.topicsNews
         }
     }
     
     var httpMethod: HTTPMethod {
         switch self {
-        case .newsListTopHeadlines, .insightsList:
+        case .newsListTopHeadlines, .insightsList, .topicsNewsList:
             return .get
         }
     }
@@ -29,6 +32,8 @@ enum APIRouter: APIRequestable {
         switch self {
         case .newsListTopHeadlines(let requestBody), .insightsList(let requestBody):
             return ["apiKey": requestBody.apiKey, "country": requestBody.country]
+        case .topicsNewsList(let requestBody):
+            return ["apiKey": requestBody.apiKey, "category": requestBody.category]
         }
     }
 }

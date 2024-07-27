@@ -14,4 +14,5 @@ struct APIKeyConstants {
 struct APIUrlConstants {
     static let newsAPI = "https://newsapi.org/v2/everything"
     static let topHeadlinesNews = "https://newsapi.org/v2/top-headlines"
+    static let topicsNews = "https://newsapi.org/v2/top-headlines/sources"
 }

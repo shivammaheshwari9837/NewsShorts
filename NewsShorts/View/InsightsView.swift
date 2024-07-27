@@ -9,9 +9,13 @@ import SwiftUI
 
 struct InsightsView: View {
     
-    @StateObject private var viewModel: InsightsViewViewModel = .init()
+    @ObservedObject private var viewModel: InsightsViewViewModel = .init()
     @State private var progressBarOffset: CGFloat = 0.0
     let timer = Timer.publish(every: 1.0, tolerance: 0.1, on: .main, in: .common).autoconnect()
+
+    init(viewModel: InsightsViewViewModel) {
+        self.viewModel = viewModel
+    }
         
     var body: some View {
         let _ = Self._printChanges()
@@ -40,7 +44,7 @@ struct InsightsView: View {
 }
 
 #Preview {
-    InsightsView()
+    InsightsView(viewModel: .init())
 }
 
 struct InsightsCardsView: View {

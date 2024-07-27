@@ -33,8 +33,17 @@ extension InsightsViewViewModel {
             }
             
             DispatchQueue.main.async {
-                self.insightsList = Array(newsInsights.reversed().prefix(8))
+                self.insightsList = Array(self.filterValidNews(newsData: newsInsights).reversed().prefix(8))
             }
+        }
+    }
+}
+
+/// Created due to free API limitations
+extension InsightsViewViewModel: ValidFilterDataProtocol {
+    func filterValidNews(newsData: [InsightsDetailResponseModel]) -> [InsightsDetailResponseModel] {
+        newsData.filter { model in
+            model.description != nil && model.urlToImage != nil && model.title != nil
         }
     }
 }

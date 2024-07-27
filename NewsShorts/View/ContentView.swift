@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var shortNotificationViewModel: ShortNotificationViewViewModel = .init()
+    @StateObject var insightsNewsViewModel: InsightsViewViewModel = .init()
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -16,11 +20,19 @@ struct ContentView: View {
                     HorizontalDirectFeedView()
                         .padding(.top, 15)
                     
-                    ShortNotificationView()
+                    ShortNotificationView(viewModel: shortNotificationViewModel)
                         .padding()
                     
-                    InsightsView()
+                    InsightsView(viewModel: insightsNewsViewModel)
                         .padding(.leading)
+                }
+            }
+            .refreshable {
+                Task {
+                    shortNotificationViewModel.fetchTopThreeNewsListFromAPI()
+                }
+                Task {
+                    insightsNewsViewModel.fetchNewsInsightsFromAPI()
                 }
             }
             .toolbar(content: {

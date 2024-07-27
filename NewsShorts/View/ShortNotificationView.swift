@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ShortNotificationView: View {
     
-    @StateObject private var viewModel: ShortNotificationViewViewModel = .init()
+    @ObservedObject private var viewModel: ShortNotificationViewViewModel
+
+    init(viewModel: ShortNotificationViewViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack {
@@ -40,7 +44,7 @@ struct ShortNotificationView: View {
 }
 
 #Preview {
-    ShortNotificationView()
+    ShortNotificationView(viewModel: .init())
 }
 
 struct ShortNotificationsNewsDetailNavigationView: View {
